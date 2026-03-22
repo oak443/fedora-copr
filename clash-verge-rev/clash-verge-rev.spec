@@ -39,12 +39,11 @@ rpm2cpio %{SOURCE0} | cpio -idmv -D %{buildroot}
 chmod +x %{buildroot}%{_bindir}/clash-verge || :
 
 %files
-# 定义包中包含的所有文件，通常官方 RPM 会安装到 /usr/bin, /usr/share/ 等
-%{_bindir}/clash-verge
-%{_datadir}/applications/clash-verge.desktop
-%{_datadir}/icons/hicolor/*/apps/clash-verge*
-# 如果有其他资源文件，可以使用通配符
-%{_datadir}/clash-verge/
+%{_bindir}/clash-verge*
+%{_bindir}/verge-mihomo*
+"/usr/lib/Clash Verge"
+"/usr/share/applications/Clash Verge.desktop"
+%{_datadir}/icons/hicolor/*/apps/clash-verge.png
 
 %changelog
 * Sat Mar 21 2026 Gemini - 2.4.7-1
