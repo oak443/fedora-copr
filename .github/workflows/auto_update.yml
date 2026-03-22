@@ -4,6 +4,10 @@ on:
     - cron: '0 12 * * *'
   workflow_dispatch:
 
+env:
+  # 提前开启 Node.js 24 支持，消除旧版本警告
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
