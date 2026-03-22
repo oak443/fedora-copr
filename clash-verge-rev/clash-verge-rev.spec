@@ -1,6 +1,6 @@
 # Gemini 3 生成
 Name:           clash-verge-rev
-Version:        v2.4.7
+Version:        2.4.7
 Release:        1%{?dist}
 Summary:        A modern GUI client based on Tauri, continuation of Clash Verge.
 Group:          Applications/Internet
