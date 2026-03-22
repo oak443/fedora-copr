@@ -1,0 +1,42 @@
+name: Auto Update
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-all:
+    runs-on: ubuntu-latest
+    strategy:
+      # 在这里列出所有你想监控的软件
+      matrix:
+        include:
+          - name: "clash-verge-rev"
+            upstream: "clash-verge-rev/clash-verge-rev"
+        #   - name: "ghostty"
+        #     upstream: "mitchellh/ghostty"
+          # add repo
+          
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. 拿版本
+      - name: Get Version for ${{ matrix.name }}
+        uses: pozetroninc/github-action-get-latest-release@master
+        id: upstream
+        with:
+          repository: ${{ matrix.upstream }}
+
+      # 2. 找并换（只改对应子文件夹里的 Spec）
+      - name: Update Spec for ${{ matrix.name }}
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "Version:.*"
+          replace: "Version:        ${{ steps.upstream.outputs.release }}"
+          include: "${{ matrix.name }}/*.spec"
+
+      # 3. 提交变动
+      - name: Commit Change for ${{ matrix.name }}
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(${{ matrix.name }}): bump to ${{ steps.upstream.outputs.release }}"
