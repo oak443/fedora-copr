@@ -7,8 +7,11 @@ Group:          Applications/Internet
 License:        GPLv3
 URL:            https://github.com/clash-verge-rev/clash-verge-rev
 
-# 直接使用官方构建好的 RPM 作为源码（针对 x86_64 架构）
-Source0:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.x86_64.rpm
+# 支持这些架构
+ExclusiveArch:  x86_64 aarch64
+
+# 直接使用官方构建好的 RPM 作为源码
+Source0:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.%{_arch}.rpm
 
 # 运行所需的依赖（根据 Tauri 应用通用的运行时依赖总结）
 Requires:       webkit2gtk4.1
@@ -45,6 +48,11 @@ chmod +x %{buildroot}%{_bindir}/clash-verge || :
 "/usr/share/applications/Clash Verge.desktop"
 %{_datadir}/icons/hicolor/*/apps/clash-verge.png
 
+%check
+
 %changelog
+* Fri Apr 24 2026 Gemini - 2.4.7-2
+- 添加 aarch64 架构支持
+
 * Sat Mar 21 2026 Gemini - 2.4.7-1
 - Update to version 2.4.7
