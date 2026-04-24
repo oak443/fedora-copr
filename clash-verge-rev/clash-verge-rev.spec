@@ -8,10 +8,11 @@ License:        GPLv3
 URL:            https://github.com/clash-verge-rev/clash-verge-rev
 
 # 支持这些架构
-ExclusiveArch:  x86_64 aarch64
+ExclusiveArch:  aarch64 x86_64
 
 # 直接使用官方构建好的 RPM 作为源码
-Source0:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.%{_arch}.rpm
+Source0:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.aarch64.rpm
+Source1:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.x86_64.rpm
 
 # 运行所需的依赖（根据 Tauri 应用通用的运行时依赖总结）
 Requires:       webkit2gtk4.1
@@ -36,7 +37,12 @@ designed to provide a tailored proxy experience for Linux.
 %install
 # 安装阶段：将官方 RPM 的内容解压到构建目录中
 mkdir -p %{buildroot}
+%ifarch aarch64
 rpm2cpio %{SOURCE0} | cpio -idmv -D %{buildroot}
+%endif
+%ifarch x86_64
+rpm2cpio %{SOURCE1} | cpio -idmv -D %{buildroot}
+%endif
 
 # 修正权限（可选，确保二进制文件可执行）
 chmod +x %{buildroot}%{_bindir}/clash-verge || :
