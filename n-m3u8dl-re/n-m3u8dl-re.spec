@@ -43,20 +43,27 @@ tar -xzf %{SOURCE1}
 mkdir -p %{buildroot}%{_bindir}
 
 # 复制二进制文件到 /usr/bin 目录
-cp N_m3u8DL-RE %{buildroot}%{_bindir}/n-m3u8dl-re
+cp N_m3u8DL-RE %{buildroot}%{_bindir}/N_m3u8DL-RE
 
 # 确保二进制文件具有正确的可执行权限
-chmod +x %{buildroot}%{_bindir}/n-m3u8dl-re
+chmod +x %{buildroot}%{_bindir}/N_m3u8DL-RE
+
+# 创建小写别名的符号链接，方便用户使用
+ln -s N_m3u8DL-RE %{buildroot}%{_bindir}/n-m3u8dl-re
 
 # 文件列表：指定打包进 RPM 的文件
 %files
 # 命令行工具的可执行文件位于 /usr/bin
+%{_bindir}/N_m3u8DL-RE
+# 小写名称的符号链接，作为便利的别名
 %{_bindir}/n-m3u8dl-re
 
 # 检查阶段：验证安装的文件
 %check
 # 验证二进制文件存在且可执行
-test -x %{buildroot}%{_bindir}/n-m3u8dl-re
+test -x %{buildroot}%{_bindir}/N_m3u8DL-RE
+# 验证小写的符号链接存在
+test -L %{buildroot}%{_bindir}/n-m3u8dl-re
 
 # 变更日志：记录版本更新历史
 %changelog
