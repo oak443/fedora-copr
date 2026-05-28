@@ -1,6 +1,6 @@
 # Gemini 3 生成
 Name:           clash-verge-rev
-Version:        2.5.0
+Version:        2.5.1
 Release:        1%{?dist}
 Summary:        A modern GUI client based on Tauri, continuation of Clash Verge.
 Group:          Applications/Internet
@@ -11,7 +11,7 @@ URL:            https://github.com/clash-verge-rev/clash-verge-rev
 ExclusiveArch:  aarch64 x86_64
 
 # 直接使用官方构建好的 RPM 作为源码
-Source0:        %{url}/releases/download/v%{version}/Clash%20Verge-%{version}-1.aarch64.rpm
+Source0:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.aarch64.rpm
 Source1:        %{url}/releases/download/v%{version}/Clash.Verge-%{version}-1.x86_64.rpm
 
 # 运行所需的依赖（根据 Tauri 应用通用的运行时依赖总结）
