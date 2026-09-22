@@ -33,6 +33,7 @@ jobs:
         id: upstream
         with:
           repository: ${{ matrix.upstream }}
+          excludes: prerelease, draft
 
       # 1.5 去掉开头的 v
       - name: Clean Version String
