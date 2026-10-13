@@ -50,6 +50,8 @@ chmod +x %{buildroot}%{_bindir}/clash-verge || :
 %files
 %{_bindir}/clash-verge*
 %{_bindir}/verge-mihomo*
+# 上游 2.5.8 起多带了一个构建期工具（生成前端 TS 绑定用），运行时用不到
+%exclude %{_bindir}/frontend-contract
 "/usr/lib/Clash Verge"
 "/usr/share/applications/Clash Verge.desktop"
 %{_datadir}/icons/hicolor/*/apps/clash-verge.png
