@@ -55,7 +55,7 @@ webhook 只会对该子目录内文件发生变更的 push 触发重建，修改
 1. 通过 `gh api`（使用 `GITHUB_TOKEN`）获取上游最新 release，避免匿名 API 限流；
 2. 更新 spec 中的 `Version`、`Release`、上游 tag / 构建日期宏（如需要）；
 3. 在 `%changelog` 顶部插入对应版本的记录；
-4. 有变动时自动提交并推送，由 COPR webhook 完成重建。
+4. 有变动时自动提交并推送；若对应的 COPR 项目已配置 webhook，COPR 会继续触发重建。
 
 更新逻辑集中在 [`update_spec.py`](.github/scripts/update_spec.py)，新增软件包时只需在 workflow 中增加一次调用。
 
