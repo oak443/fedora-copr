@@ -41,7 +41,12 @@ sudo dnf install n-m3u8dl-re
     └── n-m3u8dl-re.spec
 ```
 
-COPR 中的两个项目都配置为从本仓库的 SCM 构建，子目录分别为 `clash-verge-rev` 和 `n-m3u8dl-re`，并启用了 webhook 自动重建。向 `main` 分支推送 spec 变更后，COPR 会自动触发对应的构建。
+COPR 中的两个项目都配置为从本仓库的 SCM 构建，子目录分别为 `clash-verge-rev` 和 `n-m3u8dl-re`。
+
+- `clash-verge-rev` 已在 GitHub 仓库中配置 webhook，推送该子目录下的变更会自动触发构建。
+- `n-m3u8dl-re` 还需要在 COPR 项目页面的 **Settings → Integrations** 中复制 GitHub webhook URL，然后添加到本仓库的 **Settings → Webhooks**（Content type 选 `application/json`，事件选 push）。配置完成前，请在 COPR 页面手动触发构建。
+
+webhook 只会对该子目录内文件发生变更的 push 触发重建，修改 README 等仓库根目录文件不会触发。
 
 ## 自动更新
 
