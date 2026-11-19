@@ -1,1 +1,12 @@
-.vscode
+.vscode/
+
+# Build artifacts
+*.rpm
+*.tar.gz
+*.zip
+/rpmbuild/
+/build/
+
+# Python
+__pycache__/
+*.py[cod]
