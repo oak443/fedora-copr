@@ -3,7 +3,7 @@
 
 Name:           clash-verge-rev
 Version:        2.5.10
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Modern Tauri-based GUI client for Clash/Mihomo
 
 License:        GPL-3.0-only
@@ -60,7 +60,7 @@ test -x %{buildroot}%{_bindir}/clash-verge
 test -d "%{buildroot}/usr/lib/Clash Verge"
 
 %changelog
-* Thu Nov 19 2026 oak443 <160876107+oak443@users.noreply.github.com> - 2.5.10-1
+* Thu Nov 19 2026 oak443 <160876107+oak443@users.noreply.github.com> - 2.5.10-2
 - Update to 2.5.10
 - Clean up spec file and declare missing runtime/build dependencies
 
